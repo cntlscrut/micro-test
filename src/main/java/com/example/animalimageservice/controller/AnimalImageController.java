@@ -5,6 +5,7 @@ import com.example.animalimageservice.service.AnimalImageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -18,10 +19,13 @@ public class AnimalImageController {
     }
 
     @PostMapping("/{animalType}/{count}")
-    public ResponseEntity<List<AnimalImage>> saveAnimalImages(
-            @PathVariable String animalType, @PathVariable int count) {
-        List<AnimalImage> savedImages = service.fetchAndSaveAnimalImages(animalType, count);
-        return ResponseEntity.ok(savedImages);
+    public ResponseEntity<List<AnimalImage>> saveAnimalImages(@PathVariable String animalType, @PathVariable int count) {
+        try {
+            List<AnimalImage> savedImages = service.fetchAndSaveImages(animalType, count);
+            return ResponseEntity.ok(savedImages);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).build();
+        }
     }
 
     @GetMapping("/{animalType}/last")
