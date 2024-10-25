@@ -5,8 +5,8 @@ import com.example.animalimageservice.repository.AnimalImageRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AnimalImageService {
@@ -31,18 +31,19 @@ public class AnimalImageService {
                 url = "https://placebear.com/200/300";
                 break;
             default:
-                throw new IllegalArgumentException("Unknown animal type");
+                throw new IllegalArgumentException("Invalid animal type");
         }
 
+        List<AnimalImage> savedImages = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            // Save each image
             AnimalImage animalImage = new AnimalImage(animalType, url);
             repository.save(animalImage);
+            savedImages.add(animalImage);
         }
-        return repository.findAll();
+        return savedImages;
     }
 
-    public Optional<AnimalImage> getLastImage(String animalType) {
-        return repository.findFirstByAnimalTypeOrderByIdDesc(animalType);
+    public AnimalImage getLastImage(String animalType) {
+        return repository.findFirstByAnimalTypeOrderByIdDesc(animalType).orElse(null);
     }
 }

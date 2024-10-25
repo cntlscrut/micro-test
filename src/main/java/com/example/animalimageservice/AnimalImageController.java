@@ -26,8 +26,7 @@ public class AnimalImageController {
 
     @GetMapping("/{animalType}/last")
     public ResponseEntity<AnimalImage> getLastAnimalImage(@PathVariable String animalType) {
-        return service.getLastImage(animalType)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        AnimalImage lastImage = service.getLastImage(animalType);
+        return lastImage != null ? ResponseEntity.ok(lastImage) : ResponseEntity.notFound().build();
     }
 }
