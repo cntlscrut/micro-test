@@ -48,7 +48,7 @@ The API will be accessible at http://localhost:8080
 ### API Documentation
 
 The following endpoints are available for interacting with the API.
-Fetch and Store Animal Images
+### Fetch and Store Animal Images
 
 Fetch images from a remote URL and store them in the database.
 
@@ -67,7 +67,7 @@ Fetch images from a remote URL and store them in the database.
  -    Response:
         Returns a list of saved images with their IDs and metadata.
 
- - Retrieve the Last Stored Image for an Animal Type
+### Retrieve the Last Stored Image for an Animal Type
 
  - Retrieve the last image stored for a specific animal type.
 
