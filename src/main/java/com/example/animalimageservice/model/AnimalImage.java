@@ -28,4 +28,7 @@ public class AnimalImage {
     }
 
     // Getters and Setters
+    public byte[] getImageData() {
+        return imageData;
+    }
 }

@@ -3,6 +3,7 @@ package com.example.animalimageservice.controller;
 import com.example.animalimageservice.model.AnimalImage;
 import com.example.animalimageservice.service.AnimalImageService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -28,9 +29,18 @@ public class AnimalImageController {
         }
     }
 
-    @GetMapping("/{animalType}/last")
-    public ResponseEntity<AnimalImage> getLastAnimalImage(@PathVariable String animalType) {
+    @GetMapping(value = "/{animalType}/last", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getLastAnimalImage(@PathVariable String animalType) {
         AnimalImage lastImage = service.getLastImage(animalType);
-        return lastImage != null ? ResponseEntity.ok(lastImage) : ResponseEntity.notFound().build();
+
+        if (lastImage != null && lastImage.getImageData() != null) {
+            // Return the image data with JPEG content type
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(lastImage.getImageData());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -2,7 +2,15 @@ package com.example.animalimageservice.service;
 
 import com.example.animalimageservice.model.AnimalImage;
 import com.example.animalimageservice.repository.AnimalImageRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -14,6 +22,7 @@ import java.util.List;
 @Service
 public class AnimalImageService {
 
+    private static final Logger log = LoggerFactory.getLogger(AnimalImageService.class);
     private final AnimalImageRepository repository;
     private final RestTemplate restTemplate = new RestTemplate();
 
@@ -29,7 +38,7 @@ public class AnimalImageService {
             // Fetch image data
             InputStream inputStream = new URL(url).openStream();
             byte[] imageData = inputStream.readAllBytes();
-
+            //log.info(imageData.toString());
             // Save image metadata to the database
             AnimalImage animalImage = new AnimalImage(animalType, url, imageData);
             savedImages.add(repository.save(animalImage));
