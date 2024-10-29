@@ -3,13 +3,14 @@
 Micro-Test API is a Spring Boot-based microservice designed to fetch, store, and serve animal images based on specific animal types (e.g., cat, dog, bear). This project provides a RESTful API for fetching images from remote URLs and storing them in a local database.
 
 ## Table of Contents
+- [Simple Usage](#simple-usage)
 - [Installation](#installation)
   - [Docker](#docker)
   - [Maven](#maven)
 - [API Documentation](#api-documentation)
   - [Fetch and Store Animal Images](#fetch-and-store-animal-images)
   - [Retrieve the Last Stored Image for an Animal Type](#retrieve-the-last-stored-image-for-an-animal-type)
-
+## Simple Usage
 ## Installation
 
 ### Docker
@@ -45,43 +46,45 @@ To build and run the project with Maven:
 	```
 The API will be accessible at http://localhost:8080
 
-### API Documentation
+## API Documentation
 
 The following endpoints are available for interacting with the API.
 ### Fetch and Store Animal Images
 
 Fetch images from a remote URL and store them in the database.
 
- -     Endpoint: POST /api/v1/animal-images/fetch
- -    Description: Fetches and saves animal images based on the specified animal type and count.
- -    Parameters:
- -        animalType (query parameter, required): The type of animal image to fetch (e.g., cat, dog, bear).
- -        count (query parameter, required): The number of images to fetch and save.
- -    Example:
+Endpoint: POST /api/v1/animal-images/fetch
+Description: Fetches and saves animal images based on the specified animal type and count.
+Parameters:
 
-    ```bash
+         animalType (query parameter, required): The type of animal image to fetch (dog or bear).
+         count (query parameter, required): The number of images to fetch and save.
+	 
+Example:
 
-    curl -X POST "http://localhost:8080/api/v1/animal-images/fetch?animalType=cat&count=5"
-    ```
+```bash
+curl -X POST "http://localhost:8080/api/v1/animal-images/fetch?animalType=cat&count=5"
+```
 
- -    Response:
-        Returns a list of saved images with their IDs and metadata.
+Response:
+	Returns a list of saved images with their IDs and metadata.
 
 ### Retrieve the Last Stored Image for an Animal Type
 
- - Retrieve the last image stored for a specific animal type.
+Retrieve the last image stored for a specific animal type.
 
-    Endpoint: GET /api/v1/animal-images/{animalType}/last
-    Description: Fetches the last stored image for the specified animal type.
-    Path Parameter:
-        animalType (path parameter, required): The type of animal image to retrieve (e.g., cat, dog, bear).
-    Example:
+Endpoint: 
+```
+GET /api/v1/animal-images/{animalType}/last
+```
+Description: Fetches the last stored image for the specified animal type.
+Path Parameter:
+	animalType (path parameter, required): The type of animal image to retrieve (dog or bear).
+Example:
 
-    ```bash
-	curl -X GET "http://localhost:8080/api/v1/animal-images/cat/last"
-	```
+```bash
+curl -X GET "http://localhost:8080/api/v1/animal-images/cat/last"
+```
 
- - Response:
-
-     - Returns the image data as a JPEG image if found, or a 404 Not Found status if no image exists for the specified animal type.
+Returns the image data as a JPEG image if found, or a 404 Not Found status if no image exists for the specified animal type.
 
