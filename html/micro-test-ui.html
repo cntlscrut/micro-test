@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Image App</title>
+</head>
+<body>
+  <h1>Animal Image Manager</h1>
+
+  <!-- Image Add Section -->
+  <section id="image-add-section">
+    <h2>Add Animal Image</h2>
+    <label for="animal-type-add">Select Animal Type:</label>
+    <select id="animal-type-add">
+      <option value="dog">Dog</option>
+      <option value="bear">Bear</option>
+    </select>
+
+    <label for="image-count">Select Count:</label>
+    <select id="image-count">
+      <script>
+        for (let i = 1; i <= 10; i++) {
+          document.write(`<option value="${i}">${i}</option>`);
+        }
+      </script>
+    </select>
+
+    <button id="add-image-btn">Add Image</button>
+  </section>
+
+  <!-- Retrieve Last Image Section -->
+  <section id="retrieve-last-image-section">
+    <h2>Retrieve Last Animal Image</h2>
+    <label for="animal-type-retrieve">Select Animal Type:</label>
+    <select id="animal-type-retrieve">
+      <option value="dog">Dog</option>
+      <option value="bear">Bear</option>
+    </select>
+
+    <button id="retrieve-image-btn">Retrieve Last Image</button>
+    <div id="last-image-display"></div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
