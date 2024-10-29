@@ -7,6 +7,7 @@ Micro-Test API is a Spring Boot-based microservice designed to fetch, store, and
 
 ## Simple Usage
 ### Quick Local Install
+
 Clone the repo and run the docker command
 ```bash
 git clone git@github.com:cntlscrut/micro-test.git
@@ -14,7 +15,8 @@ cd micro-test
 docker compose up --build
 ```
 Service is accessible at http://localhost:8080
-Use a tool just as Postman to send requests:
+
+The following are the API endpoints that you can access via Postman or IntelliJ IDEA (or other tools):
 - Requesting a series of random images for a type of "dog" or "bear"
 	- POST Request URI: /api/animals/{animalType}/{count}
 	- Example:
