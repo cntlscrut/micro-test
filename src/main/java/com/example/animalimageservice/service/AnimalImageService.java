@@ -5,12 +5,6 @@ import com.example.animalimageservice.repository.AnimalImageRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -53,8 +47,6 @@ public class AnimalImageService {
 
     private String getAnimalUrl(String animalType) {
         switch (animalType.toLowerCase()) {
-            case "cat":
-                return "https://placekitten.com/400/300";
             case "dog":
                 return "https://place.dog/400/300";
             case "bear":
